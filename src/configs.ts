@@ -1,0 +1,24 @@
+import axios from "axios";
+
+const networkProwider = axios.create({
+  baseURL: "http://todo.api.eachbase.com/api",
+});
+
+const ColorsClassnames = new Map([
+  ["selected_blue", "#3f51b5"],
+  ["selected_green", "#4caf50"],
+  ["selected_pink", "#e91e63"],
+  ["selected_purple", "#9c27b0"],
+  ["selected_sea-blue", "#2196f3"],
+  ["selected_yellow", "#ffc107"],
+]);
+
+export const whitchColorName = (color: Colors) => {
+  for (const [key, value] of ColorsClassnames) {
+    if (color === value) {
+      return key;
+    }
+  }
+};
+
+export { networkProwider };

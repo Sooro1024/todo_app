@@ -1,26 +1,59 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import { Todo, Spinner } from "./components";
+import { connect, ConnectedProps } from "react-redux";
+import "./card.scss";
+import Modal from "./components/AddTodo";
+type AppOwnProps = {};
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+type AppState = {};
+
+type AppProps = AppOwnProps & ConnectedProps<typeof connector>;
+
+class App extends Component<AppProps, AppState> {
+  render() {
+    return (
+      <body>
+        <Modal />
+        <div className="container">
+          <div className="row">
+            {/* <Spinner /> */}
+            <Todo />
+            <Todo />
+            <Todo />
+            <Todo />
+            <Todo />
+            <Todo />
+            <Todo />
+            <Todo />
+            <Todo />
+            <Todo />
+            <Todo />
+            <Todo />
+            <Todo />
+            <Todo />
+            <Todo />
+            <Todo />
+            <Todo />
+            <Todo />
+            <Todo />
+            <Todo />
+            <Todo />
+            <Todo />
+            <Todo />
+            <Todo />
+            <Todo />
+          </div>
+        </div>
+      </body>
+    );
+  }
 }
 
-export default App;
+const mapStateToProps = (state: any) => ({});
+
+const mapDispatchToProps = {
+  get: () => ({ type: "sad" }),
+};
+const connector = connect(mapStateToProps, mapDispatchToProps);
+
+export default connector(App);
