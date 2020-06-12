@@ -33,7 +33,7 @@ const Todo: React.FC<TodoProps> = ({ index, todo, updateTodo, deleteTodo }) => {
   }, [handeleEdit, todo]);
 
   return (
-    <div className="col s12 m12 l6 xl4">
+    <div className="col col_item s12 m12 l6 xl4">
       <div className="card card__block blue-grey">
         <Progress open={todo.panding} />
         <form

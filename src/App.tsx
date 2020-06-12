@@ -45,7 +45,7 @@ const App: React.FC = () => {
     <>
       <Modal />
       <DeleteAll handleClick={deleteAllTodos} />
-      <Spinner panding={panding} />
+      <Spinner count={todos.length} panding={panding} />
       <div className="container">
         <div className="row">
           {todos.map((el, index) => (

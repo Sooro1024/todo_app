@@ -42,6 +42,12 @@ const reducer: Reducer<initialState, ReduxActionTypes> = (
       return { ...state, todos: action.payload };
     case "UPDATE_TODO_SUCCES":
       return { ...state, todos: action.payload };
+    case "ADD_TODO_ERROR":
+      return { ...state, error: action.payload };
+    case "ADD_TODO_PANDING":
+      return { ...state, panding: action.payload };
+    case "ADD_TODO_SUCCES":
+      return { ...state, todos: action.payload };
     default:
       return state;
   }

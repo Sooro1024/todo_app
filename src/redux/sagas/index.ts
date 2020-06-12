@@ -4,6 +4,7 @@ import {
   GetTodosURL,
   UpdateTodoURL,
   DeleteTodoURL,
+  CreateTodoURL,
 } from "../../configs";
 import {
   getTodosSuccesAction,
@@ -17,9 +18,12 @@ import {
   deleteTodoPandingAction,
   deleteTodoErrorAction,
   deleteTodoSuccesAction,
-  deleteAllTodosAction,
   deleteAllTodosSuccesAction,
   deleteAllTodosErrorAction,
+  createTodoAction,
+  createTodoPandingAction,
+  createTodoErrorAction,
+  createTodoSuccesAction,
 } from "../actions";
 import { AxiosResponse } from "axios";
 import { RootState } from "../store";
@@ -105,12 +109,32 @@ function* deleteAllTodosWorker() {
   }
 }
 
+function* addTodoWorker({ payload }: ReturnType<typeof createTodoAction>) {
+  try {
+    const storeTodos: TODOS = yield select((state: RootState) => state.todos);
+    yield put(createTodoPandingAction(true));
+    const { data }: AxiosResponse<SERV_TODO> = yield call(
+      networkProwider.post,
+      CreateTodoURL,
+      payload
+    );
+    yield put(
+      createTodoSuccesAction([...storeTodos, { ...data, panding: false }])
+    );
+  } catch (error) {
+    yield put(createTodoErrorAction(error));
+  } finally {
+    yield put(createTodoPandingAction(false));
+  }
+}
+
 function* rootSaga() {
   yield all([
     takeEvery("GET_TODOS", getTodosWroker),
     takeEvery("UPDATE_TODO", updateTodoWorker),
     takeEvery("DELETE_TODO", deleteTodoWorker),
     takeEvery("DELETE_ALL_TODOS", deleteAllTodosWorker),
+    takeEvery("ADD_TODO", addTodoWorker),
   ]);
 }
 

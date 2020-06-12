@@ -106,6 +106,36 @@ export const deleteAllTodosAction: () => {
   type: DELETE_ALL_TODOS;
 } = () => ({ type: "DELETE_ALL_TODOS" });
 
+export const createTodoPandingAction: (
+  payload: boolean
+) => {
+  type: ADD_TODO_PANDING;
+  payload: boolean;
+} = (payload) => ({ type: "ADD_TODO_PANDING", payload });
+
+export const createTodoSuccesAction: (
+  payload: TODOS
+) => {
+  type: ADD_TODO_SUCCES;
+  payload: TODOS;
+} = (payload) => ({ type: "ADD_TODO_SUCCES", payload });
+
+export const createTodoErrorAction: (
+  payload: Error
+) => {
+  type: ADD_TODO_ERROR;
+  payload: Error;
+} = (payload) => ({ type: "ADD_TODO_ERROR", payload });
+
+export const createTodoAction: (payload: {
+  color: Colors;
+  description: string;
+  title: string;
+}) => {
+  type: ADD_TODO;
+  payload: { color: Colors; description: string; title: string };
+} = (payload) => ({ type: "ADD_TODO", payload });
+
 export type ReduxActionTypes =
   | ReturnType<typeof getTodosPandingAction>
   | ReturnType<typeof getTodosSuccesAction>
@@ -118,7 +148,10 @@ export type ReduxActionTypes =
   | ReturnType<typeof deleteTodoErrorAction>
   | ReturnType<typeof deleteAllTodosPandingAction>
   | ReturnType<typeof deleteAllTodosSuccesAction>
-  | ReturnType<typeof deleteAllTodosErrorAction>;
+  | ReturnType<typeof deleteAllTodosErrorAction>
+  | ReturnType<typeof createTodoPandingAction>
+  | ReturnType<typeof createTodoSuccesAction>
+  | ReturnType<typeof createTodoErrorAction>;
 
 // export type SagaTypes =
 //   | ReturnType<typeof getTodosAction>

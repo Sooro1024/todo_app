@@ -2,13 +2,15 @@ import React from "react";
 import ReactDOM from "react-dom";
 import SaveOrEdit from "./SaveOrEdit";
 import { whitchColorName } from "../configs";
+import { connect, ConnectedProps } from "react-redux";
+import { createTodoAction } from "../redux/actions";
 
 const modalRoot = document.getElementById("modal-root");
 
 type ModalProps = {
   open: boolean;
   handleClick: () => void;
-};
+} & ConnectedProps<typeof connector>;
 type ModalState = {
   name: string;
   text: string;
@@ -65,6 +67,8 @@ class Modal extends React.Component<ModalProps, ModalState> {
             <form
               onSubmit={(ev) => {
                 ev.preventDefault();
+                this.props.addTodo({ color, title: name, description: text });
+                this.props.handleClick();
               }}
             >
               <div className="card-content white-text">
@@ -121,6 +125,7 @@ class Modal extends React.Component<ModalProps, ModalState> {
         <button
           onClick={this.props.handleClick}
           className="btn-floating btn-large waves-effect waves-light blue add_botton"
+          type="button"
         >
           <i className="material-icons">add</i>
         </button>
@@ -129,6 +134,14 @@ class Modal extends React.Component<ModalProps, ModalState> {
     );
   }
 }
+
+const mapDispatchToProps = {
+  addTodo: createTodoAction,
+};
+
+const connector = connect(null, mapDispatchToProps);
+
+const ModalCont = connector(Modal);
 
 class Parent extends React.Component<{}, { open: boolean }> {
   constructor(props: Readonly<{}>) {
@@ -144,7 +157,7 @@ class Parent extends React.Component<{}, { open: boolean }> {
   }
 
   render() {
-    return <Modal handleClick={this.handleClick} open={this.state.open} />;
+    return <ModalCont handleClick={this.handleClick} open={this.state.open} />;
   }
 }
 
