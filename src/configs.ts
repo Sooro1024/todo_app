@@ -21,4 +21,13 @@ export const whitchColorName = (color: Colors) => {
   }
 };
 
+/** URLS */
+
+export const GetTodosURL = "/todo";
+export const CreateTodoURL = "/todo/";
+export const DeleteTodoURL: (todoId: string) => string = (todoId) =>
+  `/todo/${todoId}`;
+export const UpdateTodoURL: (todoId: string) => string = (todoId) =>
+  `/todo/${todoId}`;
+
 export { networkProwider };

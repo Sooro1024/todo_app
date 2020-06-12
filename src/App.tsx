@@ -1,59 +1,75 @@
-import React, { Component } from "react";
+import React, { useEffect, useCallback } from "react";
 import { Todo, Spinner } from "./components";
-import { connect, ConnectedProps } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { Modal, DeleteAll } from "./components";
+import {
+  getTodosAction,
+  updateTodoAction,
+  deleteTodoAction,
+  deleteAllTodosAction,
+} from "./redux/actions";
+import { RootState } from "./redux/store";
 import "./card.scss";
-import Modal from "./components/AddTodo";
-type AppOwnProps = {};
 
-type AppState = {};
+const App: React.FC = () => {
+  const { panding, todos } = useSelector((state: RootState) => ({
+    panding: state.panding,
+    todos: state.todos,
+  }));
 
-type AppProps = AppOwnProps & ConnectedProps<typeof connector>;
+  const dispatch = useDispatch();
 
-class App extends Component<AppProps, AppState> {
-  render() {
-    return (
-      <body>
-        <Modal />
-        <div className="container">
-          <div className="row">
-            {/* <Spinner /> */}
-            <Todo />
-            <Todo />
-            <Todo />
-            <Todo />
-            <Todo />
-            <Todo />
-            <Todo />
-            <Todo />
-            <Todo />
-            <Todo />
-            <Todo />
-            <Todo />
-            <Todo />
-            <Todo />
-            <Todo />
-            <Todo />
-            <Todo />
-            <Todo />
-            <Todo />
-            <Todo />
-            <Todo />
-            <Todo />
-            <Todo />
-            <Todo />
-            <Todo />
-          </div>
+  const updateTodo = useCallback(
+    (index: number, todo: TODO) => {
+      dispatch(updateTodoAction(todo, index));
+    },
+    [dispatch]
+  );
+
+  const deleteTodo = useCallback(
+    (index: number) => {
+      dispatch(deleteTodoAction(index));
+    },
+    [dispatch]
+  );
+
+  const deleteAllTodos = useCallback(() => {
+    dispatch(deleteAllTodosAction());
+  }, [dispatch]);
+
+  useEffect(() => {
+    dispatch(getTodosAction());
+  }, [dispatch]);
+
+  return (
+    <>
+      <Modal />
+      <DeleteAll handleClick={deleteAllTodos} />
+      <Spinner panding={panding} />
+      <div className="container">
+        <div className="row">
+          {todos.map((el, index) => (
+            <Todo
+              deleteTodo={deleteTodo}
+              updateTodo={updateTodo}
+              key={el._id}
+              index={index}
+              todo={el}
+            />
+          ))}
         </div>
-      </body>
-    );
-  }
-}
-
-const mapStateToProps = (state: any) => ({});
-
-const mapDispatchToProps = {
-  get: () => ({ type: "sad" }),
+      </div>
+    </>
+  );
 };
-const connector = connect(mapStateToProps, mapDispatchToProps);
 
-export default connector(App);
+export default App;
+
+// const mapStateToProps = (state: RootState) => ({});
+
+// const mapDispatchToProps = {
+//   getTodos: getTodosAction,
+// };
+// const connector = connect(mapStateToProps, mapDispatchToProps);
+
+// export default connector(App);

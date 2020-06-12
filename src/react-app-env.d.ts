@@ -44,3 +44,25 @@ interface ColorsClassnames {
   selected_sea_Blue: "#2196f3";
   selected_blue: "#3f51b5";
 }
+
+type TODO = {
+  color: Colors;
+  description: string;
+  title: string;
+  __v: number;
+  _id: string;
+  panding: boolean;
+};
+
+type TODOS = TODO[];
+
+type SERV_TODO = {
+  color: Colors;
+  description: string;
+  title: string;
+  __v: number;
+  _id: string;
+};
+type SERV_TODOS = SERV_TODO[];
+
+type CREATE_TODO_BODY = { title: string; description: string; color: Colors };

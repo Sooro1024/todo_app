@@ -120,7 +120,7 @@ class Modal extends React.Component<ModalProps, ModalState> {
         ></div>
         <button
           onClick={this.props.handleClick}
-          className="btn-floating btn-large waves-effect waves-light red add_botton"
+          className="btn-floating btn-large waves-effect waves-light blue add_botton"
         >
           <i className="material-icons">add</i>
         </button>

@@ -1,7 +1,11 @@
 import React from "react";
 
-const Spinner = () => {
-  return (
+type Props = {
+  panding: boolean;
+};
+
+const Spinner: React.FC<Props> = ({ panding }) => {
+  return panding ? (
     <div className="preloader-wrapper big active">
       <div className="spinner-layer spinner-blue-only">
         <div className="circle-clipper left">
@@ -14,6 +18,10 @@ const Spinner = () => {
           <div className="circle" />
         </div>
       </div>
+    </div>
+  ) : (
+    <div className="preloader-wrapper">
+      <h4>There is no ToDo</h4>
     </div>
   );
 };

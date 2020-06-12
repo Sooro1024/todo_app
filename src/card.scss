@@ -12,7 +12,7 @@ $blue: #3f51b5;
   min-width: 2.75rem;
   display: flex;
   max-width: 3rem;
-  padding: 0.25rem 0.5rem;
+  padding: 0.5rem 0.5rem;
   align-items: center;
   transition: all 300ms ease-in-out;
   overflow: hidden;
@@ -163,10 +163,43 @@ $blue: #3f51b5;
 
 .add_botton {
   position: fixed;
-  top: 78vh;
+  top: 85vh;
   right: 2.5rem;
+}
+
+.delete_botton {
+  position: fixed;
+  top: 85vh;
+  left: 2.5rem;
 }
 
 .add_card_block {
   margin: 0;
+}
+
+.card__block {
+  p {
+    word-break: break-all;
+  }
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  transition: all 300ms ease-in-out;
+}
+
+.preloader-wrapper {
+  position: fixed;
+  left: calc(50% - 32px);
+  top: calc(50% - 32px);
+  h4 {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    width: 500px;
+    text-align: center;
+    left: 25px;
+    transform: translate(-50%, -60%);
+  }
 }
