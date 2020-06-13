@@ -3,7 +3,7 @@ import axios from "axios";
 const networkProwider = axios.create({
   baseURL: "http://todo.api.eachbase.com/api",
   headers: {
-    Accept: `text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9`,
+    Accept: `*`,
     "Referrer Policy": "strict-origin-when-cross-origin",
     Connection: "keep-alive",
     Host: "todo.api.eachbase.com",
