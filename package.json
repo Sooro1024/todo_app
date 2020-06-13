@@ -2,7 +2,6 @@
   "name": "my-app",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://sooro1024.github.io/todo_app/",
   "dependencies": {
     "axios": "^0.19.2",
     "react": "^16.13.1",
@@ -35,9 +34,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "scss_watch": "yarn tsm src --watch --exportType default --exportTypeInterface IStyles --nameFormat none",
-    "scss": "yarn tsm src --exportType default --exportTypeInterface IStyles --nameFormat none",
-    "predeploy": "yarn run build",
-    "deploy": "gh-pages -d build"
+    "scss": "yarn tsm src --exportType default --exportTypeInterface IStyles --nameFormat none"
   },
   "eslintConfig": {
     "extends": "react-app"
