@@ -5,7 +5,6 @@ const networkProwider = axios.create({
   headers: {
     "Referrer Policy": "strict-origin-when-cross-origin",
     Connection: "keep-alive",
-    Host: "todo.api.eachbase.com",
   },
 });
 
