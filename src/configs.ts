@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const networkProwider = axios.create({
-  baseURL: "http//todo.api.eachbase.com/api",
+  baseURL: "http://todo.api.eachbase.com/api",
 });
 
 const ColorsClassnames = new Map([
